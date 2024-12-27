@@ -10,22 +10,24 @@ source:
   sha256: 8ce27ba782d1b45b127af51208aefdceb2de8d2c54646bac5fc786506ce558c0
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script:
     - "{{ PYTHON }} -m pip install . -vv "
 
 requirements:
   host:
-    - python
+    - python {{ python_min }}
     - pip
     - setuptools_scm
 
   run:
-    - python
+    - python >={{ python_min }}
     - keras >=2.2.4
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - keras
 
